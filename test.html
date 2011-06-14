@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery Line - Test Page</title>
+	<meta charset="UTF-8">
+	<style>
+		#line {}
+		.lineclass {}
+	</style>
+</head>
+<body>
+	<div id="diagonal"></div>
+	
+	<script src="lib/jquery.js"></script>
+	<script src="jquery.line.js"></script>
+	<script>
+		$(function () {
+			$.line({x:100, y:100}, {x:300, y:500});
+		});
+	</script>
+</body>
+</html>
