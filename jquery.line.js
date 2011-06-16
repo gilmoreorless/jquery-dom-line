@@ -15,22 +15,28 @@
 			return calcCache[cacheId];
 		}
 		// Calculate dimensions
-		var xDiff = to.x - from.x,
-			yDiff = to.y - from.y,
+		var xDiff = Math.abs(to.x - from.x),
+			yDiff = Math.abs(to.y - from.y),
 			hypot = (!xDiff || !yDiff) ? xDiff || yDiff : Math.sqrt(xDiff * xDiff + yDiff * yDiff),
+			minX = Math.min(from.x, to.x),
+			minY = Math.min(from.y, to.y),
+			halfX = minX + xDiff / 2,
+			halfY = minY + yDiff / 2,
 			theta,
 			pos = calcCache[cacheId] = {
-				left: Math.min(from.x, to.x),
-				top: Math.min(from.y, to.y),
+				left: halfX - hypot / 2,
+				top: halfY,
 				width: hypot
 			};
 		
+		// Work out angle
 		if (!xDiff) {
 			theta = from.y < to.y ? 90 : 270;
 		} else if (!yDiff) {
 			theta = from.x < to.x ? 0 : 180;
 		} else {
-			theta = Math.random() * 360;
+			// Angle calculation taken from Raphaël
+			theta = (180 + Math.atan2(to.y - from.y, to.x - from.x) * 180 / Math.PI + 360) % 360;
 		}
 		pos.transform = 'rotate(' + theta + 'deg)';
 		console.log('x: %d / y: %d / h: %f / t: %f', xDiff, yDiff, hypot, theta);
