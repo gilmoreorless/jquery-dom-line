@@ -15,3 +15,7 @@ The `options` object passed to `$.line` is an optional plain object, with the fo
 * `className` - CSS class added to the line div element (default: "jquery-line")
 
 (More options to come when I think of them - first draft for now)
+
+## TODO
+
+* Customise line thickness/colour

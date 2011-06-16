@@ -5,17 +5,27 @@
 	<meta charset="UTF-8">
 	<style>
 		#line {}
-		.lineclass {}
+		.linediag {background-color:darkorange !important;}
+		.linerightdown {background-color:blue !important;}
+		.lineleftup {background-color:green !important;}
 	</style>
 </head>
 <body>
 	<div id="diagonal"></div>
 	
 	<script src="lib/jquery.js"></script>
+	<script src="jquery.transform.js"></script>
 	<script src="jquery.line.js"></script>
 	<script>
 		$(function () {
-			$.line({x:100, y:100}, {x:300, y:500});
+			$.line({x:100, y:100}, {x:400, y:500});
+			$.line({x:100, y:500}, {x:400, y:100});
+			$.line({x:400, y:200}, {x:100, y:400}, {className: 'linediag'});
+			$.line({x:400, y:400}, {x:100, y:200}, {className: 'linediag'});
+			$.line({x:100, y:100}, {x:400, y:100}, {className: 'linerightdown'});
+			$.line({x:100, y:100}, {x:100, y:500}, {className: 'linerightdown'});
+			$.line({x:400, y:500}, {x:100, y:500}, {className: 'lineleftup'});
+			$.line({x:400, y:500}, {x:400, y:500}, {className: 'lineleftup'});
 		});
 	</script>
 </body>
