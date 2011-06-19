@@ -23,6 +23,7 @@
 			halfX = minX + xDiff / 2,
 			halfY = minY + yDiff / 2,
 			theta,
+			// TODO: left/top needs to account for line thickness
 			pos = calcCache[cacheId] = {
 				left: halfX - hypot / 2,
 				top: halfY,
@@ -53,14 +54,13 @@
 		
 		// Create div element
 		var opts = $.extend({}, $.line.defaults, options || {}),
-			$elem = $('<div/>', {
+			$elem = opts.elem ? $(opts.elem) : $('<div/>', {
 				'class': opts.className
 			}),
-			// TODO: make these options
 			css = $.extend({
 				position: 'absolute',
-				backgroundColor: '#F00',
-				height: '1px'
+				backgroundColor: opts.lineColor,
+				height: opts.lineWidth
 			// Work out position
 			}, calcPosition(from, to));
 		
@@ -68,6 +68,9 @@
 	};
 	
 	$.line.defaults = {
-		className: 'jquery-line'
+		elem: '',
+		className: 'jquery-line',
+		lineWidth: 1,
+		lineColor: '#000'
 	}
 })(jQuery);

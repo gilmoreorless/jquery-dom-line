@@ -18,14 +18,14 @@
 	<script src="jquery.line.js"></script>
 	<script>
 		$(function () {
+			$.line({x:100, y:100}, {x:400, y:100}, {className: 'linerightdown', lineWidth: 50});
+			$.line({x:100, y:100}, {x:100, y:500}, {className: 'linerightdown', lineWidth: 6});
+			$.line({x:400, y:500}, {x:100, y:500}, {className: 'lineleftup', lineWidth: 7});
+			$.line({x:400, y:500}, {x:400, y:100}, {className: 'lineleftup', lineWidth: 30});
 			$.line({x:100, y:100}, {x:400, y:500});
-			$.line({x:100, y:500}, {x:400, y:100});
-			$.line({x:400, y:200}, {x:100, y:400}, {className: 'linediag'});
-			$.line({x:400, y:400}, {x:100, y:200}, {className: 'linediag'});
-			$.line({x:100, y:100}, {x:400, y:100}, {className: 'linerightdown'});
-			$.line({x:100, y:100}, {x:100, y:500}, {className: 'linerightdown'});
-			$.line({x:400, y:500}, {x:100, y:500}, {className: 'lineleftup'});
-			$.line({x:400, y:500}, {x:400, y:100}, {className: 'lineleftup'});
+			$.line({x:100, y:500}, {x:400, y:100}, {lineWidth: 2});
+			$.line({x:400, y:200}, {x:100, y:400}, {className: 'linediag', lineWidth: 30});
+			$.line({x:400, y:400}, {x:100, y:200}, {className: 'linediag', lineWidth: 4});
 		});
 	</script>
 </body>
