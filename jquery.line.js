@@ -9,8 +9,8 @@
 	}
 	
 	var calcCache = {};
-	function calcPosition(from, to) {
-		var cacheId = [from.x, from.y, to.x, to.y].join(',');
+	function calcPosition(from, to, calc) {
+		var cacheId = [from.x, from.y, to.x, to.y, calc.w, calc.h].join(',');
 		if (calcCache[cacheId]) {
 			return calcCache[cacheId];
 		}
@@ -23,12 +23,19 @@
 			halfX = minX + xDiff / 2,
 			halfY = minY + yDiff / 2,
 			theta,
-			// TODO: left/top needs to account for line thickness
 			pos = calcCache[cacheId] = {
 				left: halfX - hypot / 2,
 				top: halfY,
 				width: hypot
 			};
+		
+		// Account for width/height offset
+		if (calc.w > 1) {
+			pos.left -= calc.w / 2;
+		}
+		if (calc.h > 1) {
+			pos.top -= calc.h / 2;
+		}
 		
 		// Work out angle
 		if (!xDiff) {
@@ -40,7 +47,6 @@
 			theta = (180 + Math.atan2(to.y - from.y, to.x - from.x) * 180 / Math.PI + 360) % 360;
 		}
 		pos.transform = 'rotate(' + theta + 'deg)';
-		console.log('x: %d / y: %d / h: %f / t: %f', xDiff, yDiff, hypot, theta);
 		
 		return pos;
 	}
@@ -57,14 +63,24 @@
 			$elem = opts.elem ? $(opts.elem) : $('<div/>', {
 				'class': opts.className
 			}),
-			css = $.extend({
+			css = {
 				position: 'absolute',
 				backgroundColor: opts.lineColor,
+				width: 1,
 				height: opts.lineWidth
-			// Work out position
-			}, calcPosition(from, to));
+			},
+			pos;
+		$elem.css(css);
+		$elem[0].parentNode || $elem.appendTo('body');
 		
-		return $elem.css(css).appendTo('body');
+		// Work out position, accounting for element dimensions
+		pos = calcPosition(from, to, {
+			w: $elem.outerWidth(),
+			h: $elem.outerHeight()
+		});
+		$elem.css(pos);
+		
+		return $elem;
 	};
 	
 	$.line.defaults = {
