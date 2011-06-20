@@ -31,7 +31,7 @@
 		
 		// Account for width/height offset
 		if (calc.w > 1) {
-			pos.left -= calc.w / 2;
+			pos.width -= (calc.w - 1);
 		}
 		if (calc.h > 1) {
 			pos.top -= calc.h / 2;

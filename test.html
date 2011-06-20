@@ -4,28 +4,39 @@
 	<title>jQuery Line - Test Page</title>
 	<meta charset="UTF-8">
 	<style>
-		#line {}
+		#line {height:3px; z-index:100;}
 		.linediag {background-color:darkorange !important;}
 		.linerightdown {background-color:blue !important;}
 		.lineleftup {background-color:green !important;}
+		
+		.padL {padding-left:10px;}
 	</style>
 </head>
 <body>
-	<div id="diagonal"></div>
+	<div id="line"></div>
 	
 	<script src="lib/jquery.js"></script>
 	<script src="jquery.transform.js"></script>
 	<script src="jquery.line.js"></script>
 	<script>
 		$(function () {
+			// Direction tests
 			$.line({x:100, y:100}, {x:400, y:100}, {className: 'linerightdown', lineWidth: 50});
 			$.line({x:100, y:100}, {x:100, y:500}, {className: 'linerightdown', lineWidth: 6});
 			$.line({x:400, y:500}, {x:100, y:500}, {className: 'lineleftup', lineWidth: 7});
 			$.line({x:400, y:500}, {x:400, y:100}, {className: 'lineleftup', lineWidth: 30});
 			$.line({x:100, y:100}, {x:400, y:500});
-			$.line({x:100, y:500}, {x:400, y:100}, {lineWidth: 2});
-			$.line({x:400, y:200}, {x:100, y:400}, {className: 'linediag', lineWidth: 30});
-			$.line({x:400, y:400}, {x:100, y:200}, {className: 'linediag', lineWidth: 4});
+			$.line({x:100, y:500}, {x:400, y:100}, {elem: '#line'});
+			// + Chaining
+			$.line({x:400, y:200}, {x:100, y:400}, {className: 'linediag', lineWidth: 30}).css('opacity', .7);
+			// + Different objects
+			var from = function () {},
+				to = new String('to');
+			from.x = from.y = 400;
+			to.x = '100'; to.y = '200px';
+			$.line(from, to, {className: 'linediag', lineWidth: 4});
+			
+			// Padding/border/margin tests
 		});
 	</script>
 </body>
