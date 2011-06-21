@@ -44,7 +44,7 @@
 			theta = from.x < to.x ? 0 : 180;
 		} else {
 			// Angle calculation taken from Raphaël
-			theta = (180 + Math.atan2(to.y - from.y, to.x - from.x) * 180 / Math.PI + 360) % 360;
+			theta = (180 + Math.atan2(from.y - to.y, from.x - to.x) * 180 / Math.PI + 360) % 360;
 		}
 		pos.transform = 'rotate(' + theta + 'deg)';
 		
