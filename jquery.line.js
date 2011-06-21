@@ -1,4 +1,15 @@
-(function ($, undefined) {
+/*!
+ * jQuery Line plugin v0.1
+ * Copyright (c) 2011 Gilmore Davidson
+ * https://gilmoreorless.github.com/jquery-line/
+ */
+/**
+ * Draw a line between any two arbitrary points, using a simple div element
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ */
+;(function ($, undefined) {
 	function checkPoint(point) {
 		if (point.x === undefined && point.y === undefined) {
 			return false;
