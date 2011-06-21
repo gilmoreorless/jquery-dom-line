@@ -29,13 +29,11 @@
 				width: hypot
 			};
 		
-		// Account for width/height offset
-		if (calc.w > 1) {
-			pos.width -= (calc.w - 1);
-		}
-		if (calc.h > 1) {
-			pos.top -= calc.h / 2;
-		}
+		// Account for width/height/margin offsets
+		(calc.w > 1) && (pos.width -= (calc.w - 1));
+		(calc.h > 1) && (pos.top -= calc.h / 2);
+		pos.left -= calc.l;
+		pos.top -= calc.t;
 		
 		// Work out angle
 		if (!xDiff) {
@@ -76,7 +74,9 @@
 		// Work out position, accounting for element dimensions
 		pos = calcPosition(from, to, {
 			w: $elem.outerWidth(),
-			h: $elem.outerHeight()
+			h: $elem.outerHeight(),
+			l: parseFloat($elem.css('marginLeft')) || 0,
+			t: parseFloat($elem.css('marginTop')) || 0
 		});
 		$elem.css(pos);
 		
