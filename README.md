@@ -22,3 +22,6 @@ The `options` object passed to `$.line` is an object with the following availabl
 
 (More options to come when I think of them - first draft for now)
 
+## TODO
+
+* Test across browsers and jQuery versions
