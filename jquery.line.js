@@ -1,13 +1,8 @@
 /*!
- * jQuery Line plugin v0.1
+ * jQuery DOM Line plugin v0.1.1
  * Copyright (c) 2011 Gilmore Davidson
- * https://gilmoreorless.github.com/jquery-line/
- */
-/**
- * Draw a line between any two arbitrary points, using a simple div element
- *
- * Licensed under the MIT license:
- *   http://www.opensource.org/licenses/mit-license.php
+ * https://gilmoreorless.github.com/jquery-dom-line/
+ * Licensed under the MIT licence
  */
 ;(function ($, undefined) {
 	function checkPoint(point) {
@@ -29,24 +24,22 @@
 		var xDiff = Math.abs(to.x - from.x),
 			yDiff = Math.abs(to.y - from.y),
 			hypot = (!xDiff || !yDiff) ? xDiff || yDiff : Math.sqrt(xDiff * xDiff + yDiff * yDiff),
-			minX = Math.min(from.x, to.x),
-			minY = Math.min(from.y, to.y),
+			minX  = Math.min(from.x, to.x),
+			minY  = Math.min(from.y, to.y),
 			halfX = minX + xDiff / 2,
 			halfY = minY + yDiff / 2,
 			theta,
+			left  = halfX - hypot / 2,
+			top   = halfY,
 			pos = calcCache[cacheId] = {
-				left: halfX - hypot / 2,
-				top: halfY,
 				width: hypot
 			};
 		
 		// Account for width/height/margin offsets
 		(calc.w > 1) && (pos.width -= (calc.w - 1));
-		(calc.h > 1) && (pos.top -= calc.h / 2);
-		pos.left -= calc.l;
-		pos.top -= calc.t;
-		pos.left = Math.round(pos.left);
-		pos.top = Math.round(pos.top);
+		(calc.h > 1) && (top -= calc.h / 2);
+		left = Math.round(left - calc.l);
+		top  = Math.round(top - calc.t);
 		pos.width = Math.round(pos.width);
 		
 		// Work out angle
@@ -58,7 +51,7 @@
 			// Angle calculation taken from Raphaël
 			theta = (180 + Math.atan2(from.y - to.y, from.x - to.x) * 180 / Math.PI + 360) % 360;
 		}
-		pos.transform = 'rotate(' + theta + 'deg)';
+		pos.transform = 'translate(' + left + 'px,' + top + 'px) rotate(' + theta + 'deg)';
 		
 		// Add calculated properties for later manipulation
 		pos.extra = {
@@ -72,7 +65,8 @@
 			}
 		};
 		
-		return pos;
+		// New object so later manipulation outside this function doesn't affect the cache
+		return $.extend({}, pos);
 	}
 	
 	$.line = function (from, to, options) {

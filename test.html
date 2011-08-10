@@ -23,11 +23,11 @@
 	<div id="line"></div>
 	
 	<script src="lib/jquery.js"></script>
-	<!--
 	<script src="jquery.transform.js"></script>
 	<script src="jquery.line.js"></script>
-	-->
+	<!--
 	<script src="jquery.line.min.js"></script>
+	-->
 	<script>
 		$(function () {
 			// Direction tests
@@ -68,7 +68,6 @@
 			$.line({x:800, y:350}, {x:1000, y:300}, {lineWidth: 10, className: 'padL bdrL'});
 			$.line({x:800, y:400}, {x:1000, y:350}, {lineWidth: 10, className: 'padL marL'});
 			$.line({x:800, y:450}, {x:1000, y:400}, {lineWidth: 10, className: 'bdrL marL'});
-			console.info($.line({x:800, y:500}, {x:1000, y:450}, {lineWidth: 10, className: 'padL bdrL marL', returnValues: true}));
 		});
 	</script>
 </body>
