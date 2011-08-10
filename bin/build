@@ -1,0 +1,8 @@
+#!/bin/bash
+
+OUTPUT=testing.js
+
+head -n6 jquery.line.js > $OUTPUT
+uglifyjs -nc jquery.line.js >> $OUTPUT
+echo "" >> $OUTPUT
+cat jquery.transform.min.js >> $OUTPUT
