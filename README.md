@@ -1,13 +1,18 @@
-# jQuery Line
+# jQuery DOM Line
 
-Draw a line between any two arbitrary points, using a simple div element.
+Draw a line between any two arbitrary points, using a simple DOM element.
+
+## Requirements
+
+* [jQuery](http://jquery.com) version 1.4.3 or higher
+* Louis-Remi Babé's [jQuery transform CSS hook](http://louisremi.github.com/jquery.transform.js) - included by default in the minified version of this plugin
 
 ## Usage
 
-    $.line(fromPoint, toPoint, options);
+    $.line(fromPoint, toPoint[, options]);
 
-`fromPoint` and `toPoint` are required plain objects with `x` and `y` numeric properties relative to the top left of the page.
-`options` is an optional plain object, as listed below.
+`fromPoint` and `toPoint` are required objects with `x` and `y` numeric properties, relative to the top left of the page.
+`options` is an optional object, as listed below.
 
 Return value is a jQuery object containing the element used for the line.
 
@@ -15,7 +20,7 @@ Return value is a jQuery object containing the element used for the line.
 
 The `options` object passed to `$.line` is an object with the following available properties:
 
-* `elem` - jQuery selector of the element to use for the line, useful for re-using a single element for subequent lines (default: empty - creates a new div)
+* `elem` - jQuery selector of the element to use for the line, useful for re-using a single element for subsequent lines (default: empty - creates a new div)
 * `className` - CSS class added to the line div element (default: "jquery-line") - not used if `elem` option is provided
 * `lineWidth` - Thickness of the line in pixels (default: 1)
 * `lineColor` - CSS color of the line (default: black)
@@ -32,4 +37,5 @@ If the `returnValues` option is set to true, a plain object is returned with the
 
 ## TODO
 
-* Test across browsers and jQuery versions
+* Test across different jQuery versions
+* Add option to calculate CSS props without creating the line elem - can be used for animation positions
