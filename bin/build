@@ -1,15 +1,20 @@
 #!/bin/bash
 
-OUTPUT=tmp.js
-TRANSMIN=lib/jquery.transform.min.js
-TRANSCONDITION="if(!jQuery.cssHooks.transform)"
+INPUT=jquery.domline.js
+OUTPUT=jquery.domline.min.js
+OUTPUT_TMP=tmp.js
+TRANS_IN=lib/transform/jquery.transform.light.js
+TRANS_OUT=lib/jquery.transform.min.js
+TRANS_CONDITION="if(!jQuery.cssHooks.transform)"
 
-head -n6 jquery.line.js > $OUTPUT
-uglifyjs -nc jquery.line.js >> $OUTPUT
-echo "" >> $OUTPUT
-#if [ ! -f $TRANSMIN ]; then
-	uglifyjs lib/transform/jquery.transform.light.js | sed s/\\*\\/\(function/*\\/$TRANSCONDITION\(function/ > $TRANSMIN
-#fi
-cat $TRANSMIN >> $OUTPUT
+head -n6 $INPUT > $OUTPUT_TMP
+uglifyjs -nc $INPUT >> $OUTPUT_TMP
+echo "" >> $OUTPUT_TMP
+if [ ! -f $TRANS_OUT ]; then
+	head -n19 $TRANS_IN > $TRANS_OUT
+	echo -n $TRANS_CONDITION >> $TRANS_OUT
+	uglifyjs -nc $TRANS_IN >> $TRANS_OUT
+fi
+cat $TRANS_OUT >> $OUTPUT_TMP
 
-mv -f $OUTPUT jquery.domline.min.js
+mv -f $OUTPUT_TMP $OUTPUT
