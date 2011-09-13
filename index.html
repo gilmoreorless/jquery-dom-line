@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>jQuery DOM Line plugin</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+	<div id="wrapper">
+		<div id="details">
+			<h1>jQuery DOM Line plugin</h1>
+			<h2>Quick Links</h2>
+			<ul>
+				<li><a href="https://github.com/gilmoreorless/jquery-dom-line">Github project</a></li>
+				<li><a href="https://github.com/gilmoreorless/jquery-dom-line/raw/master/jquery.domline.js">Raw source code</a></li>
+				<li><a href="https://github.com/gilmoreorless/jquery-dom-line/raw/master/jquery.domline.min.js">Minified source code</a></li>
+				<!--<li><a href="demo.html">Interactive demonstration</a></li>-->
+			</ul>
+			<p>(Be kind to Github, don't hotlink JS files)</p>
+			<h2>Basic Rundown</h2>
+			<p>
+				Draw a line on a page between two arbitrary points using a DOM element (usually a div).
+				No SVG, no VML, no canvas.
+			</p>
+			<h3>Requirements</h3>
+			<ul>
+				<li>jQuery version 1.4.3 or later.</li>
+				<li>Louis-Remi Babé's <a href="http://louisremi.github.com/jquery.transform.js">jQuery transform CSS hook</a>
+					- included by default in the minified version of this plugin</li>
+			</ul>
+			<h2>Usage</h2>
+			<p>
+				<code>$.line(<em>fromPoint</em>, <em>toPoint</em>[, <em>options</em>]);</code>
+			</p>
+			(More stuff to go here)
+			
+			<h2>Why not SVG or canvas?</h2>
+			<p>
+				To be honest this was more of an experiment for my own needs than anything else,
+				and an excuse to play around with CSS3 transforms.
+				If it suits your needs, that's good, but if some other solution works for you, that's fine too.
+			</p>
+		</div><!-- #details -->
+	</div><!-- #wrapper -->
+	<a class="forkme" href="https://github.com/gilmoreorless/jquery-dom-line">
+		<img alt="Fork me on GitHub" id="ribbon" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" />
+	</a>
+	<script>
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-8341018-3']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+</body>
+</html>
