@@ -35,7 +35,6 @@ If the `returnValues` option is set to true, a plain object is returned with the
 * `center` - The centre point of the line (and also the point of rotation) - contains `x` and `y` properties
 * `rotation` - The amount of rotation applied to the line - contains `deg` (degrees) and `rad` (radians) properties
 
-## TODO
+## Todo list
 
-* Test across different jQuery versions
 * Add option to calculate CSS props without creating the line elem - can be used for animation positions
