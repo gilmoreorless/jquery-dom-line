@@ -1,5 +1,5 @@
 /*!
- * jQuery DOM Line plugin v0.1.1
+ * jQuery DOM Line plugin v0.1.2
  * Copyright (c) 2011 Gilmore Davidson
  * https://gilmoreorless.github.com/jquery-dom-line/
  * Licensed under the MIT licence
@@ -13,12 +13,12 @@
 		point.y = parseFloat(point.y) || 0;
 		return point;
 	}
-	
+
 	var calcCache = {};
 	function calcPosition(from, to, calc) {
 		var cacheId = [from.x, from.y, to.x, to.y, calc.w, calc.h].join(',');
 		if (calcCache[cacheId]) {
-			return calcCache[cacheId];
+			return $.extend({}, calcCache[cacheId]);
 		}
 		// Calculate dimensions
 		var xDiff = Math.abs(to.x - from.x),
@@ -34,7 +34,7 @@
 			pos = calcCache[cacheId] = {
 				width: hypot
 			};
-		
+
 		// Account for width/height/margin offsets
 		(calc.w > 1) && (pos.width -= (calc.w - 1));
 		(calc.h > 1) && (top -= calc.h / 2);
@@ -47,7 +47,7 @@
 		left = Math.round(left);
 		top  = Math.round(top);
 		pos.width = Math.round(pos.width);
-		
+
 		// Work out angle
 		if (!xDiff) {
 			theta = from.y < to.y ? 90 : 270;
@@ -62,7 +62,7 @@
 		//  values set by the transform matrix in IE
 		pos.left = left;
 		pos.top = top;
-		
+
 		// Add calculated properties for later manipulation
 		pos.extra = {
 			center: {
@@ -74,18 +74,18 @@
 				rad: theta % 360 * Math.PI / 180
 			}
 		};
-		
+
 		// New object so later manipulation outside this function doesn't affect the cache
 		return $.extend({}, pos);
 	}
-	
+
 	$.line = function (from, to, options) {
 		from = checkPoint(from);
 		to = checkPoint(to);
 		if (!from || !to) {
 			return false;
 		}
-		
+
 		// Create div element
 		var opts = $.extend({}, $.line.defaults, options || {}),
 			$elem = opts.elem ? $(opts.elem) : $('<div/>', {
@@ -103,7 +103,7 @@
 			returnVal = $elem;
 		$elem.css(css);
 		$elem[0].parentNode || $elem.appendTo('body');
-		
+
 		// Work out position, accounting for element dimensions
 		calcDims = {
 			w: $elem.outerWidth(),
@@ -122,7 +122,7 @@
 		extra = pos.extra;
 		delete pos.extra;
 		$elem.css(pos);
-		
+
 		// Build object if returnValues option is true
 		if (opts.returnValues) {
 			returnVal = {
@@ -132,15 +132,15 @@
 				rotation: extra.rotation
 			};
 		}
-		
+
 		return returnVal;
 	};
-	
+
 	$.line.defaults = {
 		elem: '',
 		className: 'jquery-line',
 		lineWidth: 1,
 		lineColor: '#000',
 		returnValues: false
-	}
+	};
 })(jQuery);
