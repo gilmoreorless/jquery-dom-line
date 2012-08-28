@@ -13,8 +13,8 @@
 			margin: 20px;
 		}
 		.jquery-line, .misc {
-			opacity: .7;
-			filter: alpha(opacity=70);
+			opacity: .6;
+			filter: alpha(opacity=60);
 		}
 		.scaleMargin {
 			margin: 0 25px;
@@ -38,21 +38,35 @@
 			for (var i = 0; i < 3; i++) {
 				var xoff = i * 400,
 					l = xoff + 50,
+					lrm = xoff + 200,
 					r = xoff + 350,
 					t = 50,
+					tbm = 200,
 					b = 350,
 					tl = {x:l, y:t},
+					tm = {x:lrm, y:t},
 					tr = {x:r, y:t},
+					mr = {x:r, y:tbm},
 					br = {x:r, y:b},
+					bm = {x:lrm, y:b},
 					bl = {x:l, y:b},
+					ml = {x:l, y:tbm},
 					thickness = i * 10 + 1;
+				// 90° angles
 				$.line(tl, tr, {lineColor:'black', lineWidth:thickness});
 				$.line(tr, br, {lineColor:'red', lineWidth:thickness});
 				$.line(br, bl, {lineColor:'blue', lineWidth:thickness});
 				$.line(bl, tl, {lineColor:'green', lineWidth:thickness});
+				// 45° angles
 				$.line(tl, br, {lineColor:'gold', lineWidth:thickness});
 				$.line(bl, tr, {lineColor:'purple', lineWidth:thickness});
-				
+				// 22.5° angles, with double-back
+				$.line(tl, mr, {lineColor:'pink', lineWidth:thickness});
+				$.line(mr, tl, {lineColor:'white', lineWidth:thickness});
+				$.line(tl, bm, {lineColor:'pink', lineWidth:thickness});
+				$.line(bm, tr, {lineColor:'aqua', lineWidth:thickness});
+				$.line(mr, bl, {lineColor:'chartreuse', lineWidth:thickness});
+
 				var scaleX     = xoff + 200,
 					scaleY     = 425,
 					scaleStart = {x:scaleX - 75, y:scaleY},
