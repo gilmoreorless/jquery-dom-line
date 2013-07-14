@@ -8,7 +8,7 @@
 		.linediag {background-color:darkorange !important;}
 		.linerightdown {background-color:blue !important;}
 		.lineleftup {background-color:green !important;}
-		
+
 		.guide1 {border-radius:5px 0 0 5px;}
 		.guide2 {border-radius:0 5px 5px 0;}
 		.padL {padding-left:10px;}
@@ -21,10 +21,10 @@
 </head>
 <body>
 	<div id="line"></div>
-	
+
 	<script src="lib/jquery.js"></script>
 	<script src="jquery.domline.js"></script>
-	<script src="lib/jquery.transform.min.js"></script>
+	<script src="lib/jquery.transform2d.min.js"></script>
 	<script>
 		$(function () {
 			// Direction tests
@@ -42,13 +42,13 @@
 			from.x = from.y = 400;
 			to.x = '100'; to.y = '200px';
 			$.line(from, to, {className: 'linediag', lineWidth: 4});
-			
+
 			// Padding/border/margin tests
 			$.line({x:500, y:100}, {x:500, y:500}, {lineWidth: 10, lineColor: 'red', className: 'guide1'})
 			$.line({x:700, y:500}, {x:700, y:100}, {lineWidth: 10, lineColor: 'red', className: 'guide1'})
 			$.line({x:800, y:100}, {x:800, y:500}, {lineWidth: 10, lineColor: 'green', className: 'guide2'})
 			$.line({x:1000, y:500}, {x:1000, y:100}, {lineWidth: 10, lineColor: 'green', className: 'guide2'})
-			
+
 			$.line({x:500, y:150}, {x:700, y:100}, {lineWidth: 10});
 			$.line({x:500, y:200}, {x:700, y:150}, {lineWidth: 10, className: 'padR'});
 			$.line({x:500, y:250}, {x:700, y:200}, {lineWidth: 10, className: 'bdrR'});
@@ -57,7 +57,7 @@
 			$.line({x:500, y:400}, {x:700, y:350}, {lineWidth: 10, className: 'padR marR'});
 			$.line({x:500, y:450}, {x:700, y:400}, {lineWidth: 10, className: 'bdrR marR'});
 			$.line({x:500, y:500}, {x:700, y:450}, {lineWidth: 10, className: 'padR bdrR marR'});
-			
+
 			$.line({x:800, y:150}, {x:1000, y:100}, {lineWidth: 10});
 			$.line({x:800, y:200}, {x:1000, y:150}, {lineWidth: 10, className: 'padL'});
 			$.line({x:800, y:250}, {x:1000, y:200}, {lineWidth: 10, className: 'bdrL'});

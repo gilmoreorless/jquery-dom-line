@@ -2,7 +2,8 @@
  * jQuery DOM Line plugin v0.1.2
  * Copyright (c) 2011 Gilmore Davidson
  * https://gilmoreorless.github.com/jquery-dom-line/
- * Licensed under the MIT licence
+ *
+ * @license Open source under the MIT licence: http://gilmoreorless.mit-license.org/2011/
  */
 ;(function ($, undefined) {
 	function checkPoint(point) {
