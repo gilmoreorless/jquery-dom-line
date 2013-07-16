@@ -3,17 +3,16 @@
 INPUT=jquery.domline.js
 OUTPUT=jquery.domline.min.js
 OUTPUT_TMP=tmp.js
-TRANS_IN=lib/transform/jquery.transform.light.js
-TRANS_OUT=lib/jquery.transform.min.js
+TRANS_IN=lib/transform/jquery.transform2d.js
+TRANS_OUT=lib/jquery.transform2d.min.js
 TRANS_CONDITION="if(!jQuery.cssHooks.transform)"
 
-head -n6 $INPUT > $OUTPUT_TMP
-uglifyjs -nc $INPUT >> $OUTPUT_TMP
+uglifyjs $INPUT -cm --comments > $OUTPUT_TMP
 echo "" >> $OUTPUT_TMP
 if [ ! -f $TRANS_OUT ]; then
-	head -n19 $TRANS_IN > $TRANS_OUT
+	head -n18 $TRANS_IN > $TRANS_OUT
 	echo -n $TRANS_CONDITION >> $TRANS_OUT
-	uglifyjs -nc $TRANS_IN >> $TRANS_OUT
+	uglifyjs $TRANS_IN -cm >> $TRANS_OUT
 fi
 cat $TRANS_OUT >> $OUTPUT_TMP
 
