@@ -2,6 +2,8 @@
 
 Draw a line between any two arbitrary points, using a simple DOM element.
 
+Full documentation and examples available at <http://gilmoreorless.github.io/jquery-dom-line/>
+
 ## Requirements
 
 * [jQuery](http://jquery.com) version 1.4.3 or higher
@@ -26,7 +28,7 @@ The `options` object passed to `$.line` is an object with the following availabl
 * `lineColor` - CSS color of the line (default: black)
 * `returnValues` - If true, returns an object with the calculated dimensions for the line (see below), instead of a jQuery object (default: false)
 
-#### Return Values
+### Return Values
 
 If the `returnValues` option is set to true, a plain object is returned with the following defined properties:
 
@@ -35,6 +37,6 @@ If the `returnValues` option is set to true, a plain object is returned with the
 * `center` - The centre point of the line (and also the point of rotation) - contains `x` and `y` properties
 * `rotation` - The amount of rotation applied to the line - contains `deg` (degrees) and `rad` (radians) properties
 
-## Todo list
+## Todo List
 
 * Add option to calculate CSS props without creating the line elem - can be used for animation positions
