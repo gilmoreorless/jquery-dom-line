@@ -3,7 +3,8 @@
 <head>
 	<title>jQuery DOM Line plugin</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="main.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<link rel="stylesheet" type="text/css" href="../lib/css/common-docs.css" />
 </head>
 <body>
 	<div id="wrapper">
@@ -14,9 +15,9 @@
 				<li><a href="https://github.com/gilmoreorless/jquery-dom-line">Github project</a></li>
 				<li><a href="https://github.com/gilmoreorless/jquery-dom-line/raw/master/jquery.domline.js">Raw source code</a></li>
 				<li><a href="https://github.com/gilmoreorless/jquery-dom-line/raw/master/jquery.domline.min.js">Minified source code</a></li>
-				<!--<li><a href="demo.html">Interactive demonstration</a></li>-->
+				<li><a href="../jquery-nearest/demo.html">Basic demonstration (in combination with another plugin)</a></li>
 			</ul>
-			<p>(Be kind to Github, don't hotlink JS files)</p>
+			<p />
 			<h2>Basic Rundown</h2>
 			<p>
 				Draw a line on a page between two arbitrary points using a DOM element (usually a div).
@@ -25,36 +26,90 @@
 			<h3>Requirements</h3>
 			<ul>
 				<li>jQuery version 1.4.3 or later.</li>
-				<li>Louis-Remi Babé's <a href="http://louisremi.github.com/jquery.transform.js">jQuery transform CSS hook</a>
-					- included by default in the minified version of this plugin</li>
+				<li>Louis-Remi Babé’s <a href="http://louisremi.github.com/jquery.transform.js">jQuery transform CSS hook</a>
+					&ndash; included by default in the minified version of this plugin</li>
 			</ul>
-			<h2>Usage</h2>
+			<h2>Reference</h2>
+			<h3 id="usage">Usage</h3>
+			<pre><code>$.line(<em>fromPoint</em>, <em>toPoint</em>[, <em>options</em>]);</code></pre>
 			<p>
-				<code>$.line(<em>fromPoint</em>, <em>toPoint</em>[, <em>options</em>]);</code>
+				Draws a line from <code>fromPoint</code> to <code>toPoint</code> using a DOM node (a <code>&lt;div&gt;</code> by default).
 			</p>
-			(More stuff to go here)
-			
+			<p>
+				<code>fromPoint</code> and <code>toPoint</code> are objects containing <code>x</code> and <code>y</code> (numeric) properties that define points on the page (relative to the top left corner of the page, not the screen).
+			</p>
+			<p>
+				<code>options</code> is an optional (duh) object as defined below.
+			</p>
+			<h3 id="options">Options</h3>
+			<p>
+				The <code>options</code> object can have the following parameters:
+			</p>
+			<dl>
+				<dt><code>elem</code></dt>
+				<dd class="type">DOM node or jQuery selector</dd>
+				<dd>If provided, the provided element will be used to make the line, useful for re-using a single element for subsequent lines.
+					If not provided, or left falsey, a new <code>&lt;div&gt;</code> is created.</dd>
+
+				<dt><code>className</code></dt>
+				<dd class="type">String</dd>
+				<dd>CSS class to add to a newly-created <code>&lt;div&gt;</code>
+				    &ndash; only used if <code>elem</code> option is falsey.</dd>
+
+				<dt><code>lineWidth</code></dt>
+				<dd class="type">Integer</dd>
+				<dd>Desired width (thickness) of the line in pixels.</dd>
+
+				<dt><code>lineColor</code></dt>
+				<dd class="type">String</dd>
+				<dd>Colour of the line &ndash; can be any valid CSS colour value.</dd>
+
+				<dt><code>returnValues</code></dt>
+				<dd class="type">Boolean</dd>
+				<dd>If true, returns an object with the calculated dimensions for the line (see <a href="#return">Return Values</a> section), instead of a jQuery object.
+					This can be useful for calculating the end point of an animation without changing the DOM node.</dd>
+			</dl>
+			<h3 id="defaults">Defaults</h3>
+			<p>
+				Default options are defined in the <code>$.line.defaults</code> object as shown:
+			</p>
+			<pre><code>$.line.defaults = {
+    elem: '',   <span class="comment">// if falsey, creates a new &lt;div&gt;</span>
+    className: 'jquery-line',
+    lineWidth: 1,
+    lineColor: '#000',
+    returnValues: false
+};
+</code></pre>
+			<p>
+				These can be re-defined to make new default options for all subsequent calls to <code>$.line()</code>.
+			</p>
+			<h3 id="return">Return Values</h3>
+			<p>
+				If the <code>fromPoint</code> or <code>toPoint</code> objects are not valid, the return value is <code>false</code>.
+			</p>
+			<p>
+				If the <code>returnValues</code> option is <code>false</code> (the default), the return value is a jQuery object for the line element.
+			</p>
+			<p>
+				If the <code>returnValues</code> option is <code>true</code>, the return value is an object containing the following properties:
+			</p>
+			<ul>
+				<li><code>from</code> &ndash; The <code>fromPoint</code> argument passed to the function</li>
+				<li><code>to</code> &ndash; The <code>toPoint</code> argument passed to the function</li>
+				<li><code>center</code> &ndash; The centre point of the line (and also the point of rotation) &ndash; contains <code>x</code> and <code>y</code> properties</li>
+				<li><code>rotation</code> &ndash; The amount of rotation applied to the line &ndash; contains <code>deg</code> (degrees) and <code>rad</code> (radians) properties</li>
+			</ul>
+
 			<h2>Why not SVG or canvas?</h2>
 			<p>
-				To be honest this was more of an experiment for my own needs than anything else,
-				and an excuse to play around with CSS3 transforms.
-				If it suits your needs, that's good, but if some other solution works for you, that's fine too.
+				To be honest this was more of an experiment for my own needs than anything else, and an excuse to play around with CSS3 transforms.
+				If it suits your needs, that’s good, but if some other solution works for you, that’s fine too.
 			</p>
 		</div><!-- #details -->
 	</div><!-- #wrapper -->
-	<a class="forkme" href="https://github.com/gilmoreorless/jquery-dom-line">
-		<img alt="Fork me on GitHub" id="ribbon" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" />
-	</a>
-	<script>
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-8341018-3']);
-	  _gaq.push(['_trackPageview']);
+	<!-- <a class="forkme" href="https://github.com/gilmoreorless/jquery-dom-line"></a> -->
 
-	  (function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	</script>
+	<script src="../lib/js/common-docs.js"></script>
 </body>
 </html>
