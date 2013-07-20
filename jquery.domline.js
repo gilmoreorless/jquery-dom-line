@@ -1,5 +1,5 @@
 /*!
- * jQuery DOM Line plugin v0.1.2
+ * jQuery DOM Line plugin v0.1.3
  * Copyright (c) 2011 Gilmore Davidson
  * https://gilmoreorless.github.com/jquery-dom-line/
  *
@@ -102,8 +102,12 @@
 			calcDims,
 			extra,
 			returnVal = $elem;
+
 		$elem.css(css);
-		$elem[0].parentNode || $elem.appendTo('body');
+		// If elem is detached from the DOM, add it to the body
+		if ($elem.length && !$elem[0].parentNode) {
+			$elem.appendTo('body');
+		}
 
 		// Work out position, accounting for element dimensions
 		calcDims = {

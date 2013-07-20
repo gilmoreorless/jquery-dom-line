@@ -66,6 +66,10 @@
 			$.line({x:800, y:400}, {x:1000, y:350}, {lineWidth: 10, className: 'padL marL'});
 			$.line({x:800, y:450}, {x:1000, y:400}, {lineWidth: 10, className: 'bdrL marL'});
 			$.line({x:800, y:500}, {x:1000, y:450}, {lineWidth: 10, className: 'padL bdrL marL'});
+
+			// Should not throw an error
+			var $error = $('#does-not-exist');
+			$.line({x:0, y:0}, {x:100, y:100}, {elem: $error});
 		});
 	</script>
 </body>
