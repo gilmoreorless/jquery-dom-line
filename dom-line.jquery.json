@@ -1,0 +1,29 @@
+{
+  "name": "dom-line",
+  "title": "jQuery DOM Line",
+  "description": "Draw a line between any two arbitrary points, using a simple DOM element",
+  "version": "0.1.2",
+  "keywords": ["dom", "line", "draw", "transform"],
+  "homepage": "http://gilmoreorless.github.io/jquery-dom-line/",
+  "docs": "http://gilmoreorless.github.io/jquery-dom-line/",
+  "bugs": "https://github.com/gilmoreorless/jquery-dom-line/issues",
+  "author": {
+    "name": "Gilmore Davidson",
+    "url": "http://shoehornwithteeth.com/"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://gilmoreorless.mit-license.org/2011/"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.4.3",
+    "transform": ">=1.0"
+  },
+  "files": [
+    "jquery.domline.js",
+    "jquery.domline.min.js",
+    "README.md"
+  ]
+}
